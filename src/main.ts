@@ -26,9 +26,11 @@ async function bootstrap() {
     credentials: true,
   });
 
-  const port = config.get<number>('PORT') ?? 3333;
-  await app.listen(port);
+ const port = Number(process.env.PORT) || config.get<number>('PORT') || 3333;
+  // 0.0.0.0 é necessário em hospedagens como Render para o serviço
+  // ser alcançável de fora do contêiner.
+  await app.listen(port, '0.0.0.0');
   // eslint-disable-next-line no-console
-  console.log(`Recoop API rodando em http://localhost:${port}/api`);
+  console.log(`Recoop API rodando na porta ${port} (prefixo /api)`);
 }
 bootstrap();
