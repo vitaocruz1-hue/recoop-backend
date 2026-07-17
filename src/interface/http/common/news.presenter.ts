@@ -9,6 +9,7 @@ export class NewsPresenter {
       tag: news.tag,
       excerpt: news.excerpt,
       content: news.content,
+      coverImage: news.coverImage,
       published: news.published,
       publishedAt: news.publishedAt,
       createdAt: news.createdAt,

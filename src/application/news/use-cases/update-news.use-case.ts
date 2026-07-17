@@ -8,6 +8,7 @@ export interface UpdateNewsCommand {
   tag?: string;
   excerpt?: string;
   content?: string;
+  coverImage?: string | null;
 }
 
 @Injectable()

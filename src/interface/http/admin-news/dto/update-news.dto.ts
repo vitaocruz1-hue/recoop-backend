@@ -18,4 +18,8 @@ export class UpdateNewsDto {
   @IsOptional()
   @IsString()
   content?: string;
+
+  @IsOptional()
+  @IsString()
+  coverImage?: string;
 }

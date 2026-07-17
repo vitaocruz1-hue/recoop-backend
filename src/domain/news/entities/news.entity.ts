@@ -8,6 +8,7 @@ export interface NewsProps {
   tag: string;
   excerpt: string;
   content: string;
+  coverImage: string | null;
   published: boolean;
   publishedAt: Date | null;
   createdAt: Date;
@@ -19,6 +20,7 @@ export interface CreateNewsInput {
   tag: string;
   excerpt: string;
   content: string;
+  coverImage?: string | null;
 }
 
 /**
@@ -47,6 +49,7 @@ export class News {
       tag: input.tag.trim(),
       excerpt: input.excerpt.trim(),
       content: input.content.trim(),
+      coverImage: input.coverImage?.trim() || null,
       published: false,
       publishedAt: null,
       createdAt: now,
@@ -86,6 +89,9 @@ export class News {
       if (!input.content.trim()) throw new Error('O conteúdo da notícia é obrigatório.');
       this.props.content = input.content.trim();
     }
+    if (input.coverImage !== undefined) {
+      this.props.coverImage = input.coverImage?.trim() || null;
+    }
     this.props.updatedAt = new Date();
   }
 
@@ -113,6 +119,7 @@ export class News {
   get tag(): string { return this.props.tag; }
   get excerpt(): string { return this.props.excerpt; }
   get content(): string { return this.props.content; }
+  get coverImage(): string | null { return this.props.coverImage; }
   get published(): boolean { return this.props.published; }
   get publishedAt(): Date | null { return this.props.publishedAt; }
   get createdAt(): Date { return this.props.createdAt; }
